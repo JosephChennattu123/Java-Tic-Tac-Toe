@@ -45,4 +45,5 @@ public class WrongGetSymbol {
         int r = p.getPosition();
         assertEquals(5,r);
     }
+    
 }
