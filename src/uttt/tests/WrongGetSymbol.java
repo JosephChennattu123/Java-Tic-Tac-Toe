@@ -43,6 +43,6 @@ public class WrongGetSymbol {
     @Test
     public void testgetPosition(){
         int r = p.getPosition();
-        assertEquals(5,r)
+        assertEquals(5,r);
     }
 }
