@@ -34,7 +34,7 @@ public class BoardTests {
         MarkInterface[] neueMarks = board.getMarks();
         assertArrayEquals(p,neueMarks);
         }
-    }
+    
 
     @Test
     public void TestsetMarkAt(){
@@ -45,21 +45,36 @@ public class BoardTests {
     }
     @Test
     public void TestisClosed(){
-        /*/
+        
         //test when board not closed
         assertFalse(board.isClosed());
         //set board to a closed state
         assertTrue(board.isClosed());
-        */
+        
 
     }
     @Test
     public void TestisMovePossible(){
-        
+        //set 0 to empty
+        board.setMarkAt(Symbol.EMPTY, 0)
+        assertTrue(board.isMovePossible(0));
+        //mark 0 with cross
+        board.setMarkAt(Symbol.CROSS,0);
+        assertFalse(board.isMovePossible(0));
     }
     @Test
     public void TestgetWinner()
     {
-
+        p = new MarkInterface[81];          
+        board.setMarks(p);
+        assertEquals(Symbol.EMPTY,board.getWinner());
+        //Set board to winning state for CROSS
+        for(int i =0;i<81;i++)
+        {
+        b = board.setMarkAt(Symbol.CROSS, i);
+        assertTrue(b);
+        }
+        assertEquals(Symbol.CROSS,board.getWinner());
     }
+
 }

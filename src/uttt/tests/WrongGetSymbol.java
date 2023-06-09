@@ -7,7 +7,6 @@ import org.junit.Test;
 import uttt.UTTTFactory;
 import uttt.game.MarkInterface;
 import uttt.game.BoardInterface;
-import uttt.game.SimulatorInterface;
 import uttt.utils.Symbol;
 
 public class WrongGetSymbol {
