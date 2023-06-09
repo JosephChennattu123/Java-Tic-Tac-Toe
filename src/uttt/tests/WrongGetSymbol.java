@@ -11,12 +11,15 @@ import uttt.game.SimulatorInterface;
 import uttt.utils.Symbol;
 
 public class WrongGetSymbol {
-      MarkInterface p;
+      MarkInterface p, p1,p2;
       BoardInterface b;
       
     @Before
     public void setUp() throws Exception{
+        b = UTTTFactory.createBoard();
         p = UTTTFactory.createmark(Symbol.CROSS, 5);
+        p1 = UTTTFactory.createmark(Symbol.CIRCLE, 6);
+        p2 = UTTTFactory.createmark(Symbol.EMPTY, 5);
     }
     
     
@@ -27,8 +30,19 @@ public class WrongGetSymbol {
     }
     @Test
     public void testSetSymbol(){
-        p.setSymbol(Symbol.CIRCLE);
+        p.setSymbol(Symbol.CROSS);
+        p1.setSymbol(Symbol.CIRCLE);
+        p2.setSymbol(Symbol.EMPTY);
         Symbol symbol = p.getSymbol();
-        assertEquals(Symbol.CIRCLE,symbol);
+        assertEquals(Symbol.CROSS,symbol);
+        Symbol symbol1 = p1.getSymbol();
+        assertEquals(Symbol.CIRCLE,symbol1);
+        Symbol symbol2 = p2.getSymbol();
+        assertEquals(Symbol.EMPTY,symbol2);
+    }
+    @Test
+    public void testgetPosition(){
+        int r = p.getPosition();
+        assertEquals(5,r)
     }
 }
