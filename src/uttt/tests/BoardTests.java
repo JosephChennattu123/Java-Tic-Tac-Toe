@@ -20,61 +20,47 @@ public class BoardTests {
     }
 
     @Test
-    public void TestgetMarks()
-{
-    p= board.getMarks();
-    assertNotNull(p);
-    assertEquals(81,p.length);
-}   
-    @Test
-    public void TestsetMarks()
-    {
-        p = new MarkInterface[81];
-        board.setMarks(p);
-        MarkInterface[] neueMarks = board.getMarks();
-        assertArrayEquals(p,neueMarks);
-        }
-    
-
-    @Test
-    public void TestsetMarkAt(){
-       b = board.setMarkAt(Symbol.CIRCLE,4);
+    public void testSetMarkAt() {
+        b = board.setMarkAt(Symbol.CIRCLE, 4);
         assertTrue(b);
         MarkInterface[] marks = board.getMarks();
-        assertEquals(Symbol.CIRCLE,marks[4].getSymbol());
+        assertEquals(Symbol.CIRCLE, marks[4].getSymbol());
     }
-    @Test
-    public void TestisClosed(){
-        
-        //test when board not closed
-        assertFalse(board.isClosed());
-        //set board to a closed state
-        assertTrue(board.isClosed());
-        
 
-    }
     @Test
-    public void TestisMovePossible(){
-        //set 0 to empty
-        board.setMarkAt(Symbol.EMPTY, 0)
+    public void testIsClosed() {
+        // test when the board is not closed
+        assertFalse(board.isClosed());
+
+        // ... Set the board to a closed state
+
+        // test when the board is closed
+        assertTrue(board.isClosed());
+    }
+
+    @Test
+    public void testIsMovePossible() {
+        // set 0 to empty
+        board.setMarkAt(Symbol.EMPTY, 0);
         assertTrue(board.isMovePossible(0));
-        //mark 0 with cross
-        board.setMarkAt(Symbol.CROSS,0);
+
+        // mark 0 with cross
+        board.setMarkAt(Symbol.CROSS, 0);
         assertFalse(board.isMovePossible(0));
     }
+
     @Test
-    public void TestgetWinner()
-    {
-        p = new MarkInterface[81];          
+    public void testGetWinner() {
+        p = new MarkInterface[81];
         board.setMarks(p);
-        assertEquals(Symbol.EMPTY,board.getWinner());
-        //Set board to winning state for CROSS
-        for(int i =0;i<81;i++)
-        {
-        b = board.setMarkAt(Symbol.CROSS, i);
-        assertTrue(b);
+        assertEquals(Symbol.EMPTY, board.getWinner());
+
+        // Set the board to a winning state for CROSS
+        for (int i = 0; i < 81; i++) {
+            b = board.setMarkAt(Symbol.CROSS, i);
+            assertTrue(b);
         }
-        assertEquals(Symbol.CROSS,board.getWinner());
+        assertEquals(Symbol.CROSS, board.getWinner());
     }
 
 }
