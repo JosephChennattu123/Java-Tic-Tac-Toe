@@ -17,9 +17,9 @@ public class WrongGetSymbol {
     @Before
     public void setUp() throws Exception{
         b = UTTTFactory.createBoard();
-        p = UTTTFactory.createmark(Symbol.CROSS, 5);
-        p1 = UTTTFactory.createmark(Symbol.CIRCLE, 6);
-        p2 = UTTTFactory.createmark(Symbol.EMPTY, 5);
+        p = UTTTFactory.createMark(Symbol.CROSS, 5);
+        p1 = UTTTFactory.createMark(Symbol.CIRCLE, 6);
+        p2 = UTTTFactory.createMark(Symbol.EMPTY, 5);
     }
     
     
