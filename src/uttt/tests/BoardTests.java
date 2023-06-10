@@ -65,11 +65,11 @@ public class BoardTests {
     @Test
     public void TestgetWinner()
     {
-        p = new MarkInterface[81];          
+        p = new MarkInterface[9];          
         board.setMarks(p);
         assertEquals(Symbol.EMPTY,board.getWinner());
         //Set board to winning state for CROSS
-        for(int i =0;i<81;i++)
+        for(int i =0;i<9;i++)
         {
         b = board.setMarkAt(Symbol.CROSS, i);
         assertTrue(b);
