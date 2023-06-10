@@ -56,7 +56,7 @@ public class BoardTests {
     @Test
     public void TestisMovePossible(){
         //set 0 to empty
-        board.setMarkAt(Symbol.EMPTY, 0)
+        board.setMarkAt(Symbol.EMPTY, 0);
         assertTrue(board.isMovePossible(0));
         //mark 0 with cross
         board.setMarkAt(Symbol.CROSS,0);
