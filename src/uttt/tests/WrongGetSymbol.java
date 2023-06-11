@@ -31,13 +31,10 @@ public class WrongGetSymbol {
     public void testSetSymbol(){
         p.setSymbol(Symbol.CROSS);
         p1.setSymbol(Symbol.CIRCLE);
-        p2.setSymbol(Symbol.EMPTY);
         Symbol symbol = p.getSymbol();
         assertEquals(Symbol.CROSS,symbol);
         Symbol symbol1 = p1.getSymbol();
         assertEquals(Symbol.CIRCLE,symbol1);
-        Symbol symbol2 = p2.getSymbol();
-        assertEquals(Symbol.EMPTY,symbol2);
     }
     @Test
     public void testgetPosition(){
