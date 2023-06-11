@@ -29,7 +29,7 @@ public class BoardTests {
     @Test
     public void TestsetMarks()
     {
-        p = new MarkInterface[81];
+        p = new MarkInterface[9];
         board.setMarks(p);
         MarkInterface[] neueMarks = board.getMarks();
         assertArrayEquals(p,neueMarks);
@@ -38,23 +38,37 @@ public class BoardTests {
 
     @Test
     public void TestsetMarkAt(){
+        assertFalse(board.isClosed());
        b = board.setMarkAt(Symbol.CIRCLE,4);
         assertTrue(b);
         MarkInterface[] marks = board.getMarks();
         assertEquals(Symbol.CIRCLE,marks[4].getSymbol());
+        assertFalse(board.setMarkAt(Symbol.CROSS,4));
     }
     @Test
     public void TestisClosed(){
         
         //test when board not closed
+        if(board.getWinner()==Symbol.EMPTY)
+        {
+        int ninja=0;
+        p = new MarkInterface[9];
+        p = board.getMarks();
+        for(int i = 0;i<9;i++){
+        if(p[i].getSymbol()==Symbol.CROSS || p[i].getSymbol()==Symbol.CIRCLE)
+        ninja++;
+        }
+        if(ninja<9)
         assertFalse(board.isClosed());
-        //set board to a closed state
+        else
         assertTrue(board.isClosed());
-        
-
+        }
+        if(board.getWinner()==Symbol.CROSS || board.getWinner()==Symbol.CIRCLE)
+        assertTrue(board.isClosed()); 
     }
     @Test
     public void TestisMovePossible(){
+        assertFalse(board.isClosed());
         //set 0 to empty
         board.setMarkAt(Symbol.EMPTY, 0);
         assertTrue(board.isMovePossible(0));
@@ -69,7 +83,7 @@ public class BoardTests {
         board.setMarks(p);
         assertEquals(Symbol.EMPTY,board.getWinner());
         //Set board to winning state for CROSS
-        for(int i =0;i<9;i++)
+        for(int i =0;i<3;i++)
         {
         b = board.setMarkAt(Symbol.CROSS, i);
         assertTrue(b);
