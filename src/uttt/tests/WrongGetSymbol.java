@@ -29,6 +29,7 @@ public class WrongGetSymbol {
     }
     @Test
     public void testSetSymbol(){
+        p.setSymbol(Symbol.EMPTY);
         try{
             p.setSymbol(Symbol.CROSS);
         }catch(Exception e)
