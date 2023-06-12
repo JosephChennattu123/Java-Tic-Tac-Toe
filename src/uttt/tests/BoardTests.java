@@ -31,7 +31,9 @@ public class BoardTests {
     {
         p = new MarkInterface[9];
         for(int i =0;i<9;i++)
+        {
         p[i].setSymbol(Symbol.CROSS);
+        }
         board.setMarks(p);
         MarkInterface[] neueMarks = board.getMarks();
         for(int i = 0;i<9;i++)
@@ -42,6 +44,7 @@ public class BoardTests {
     @Test
     public void TestsetMarkAt() throws Exception{
         assertFalse(board.isClosed());
+        board= mtboard(board);
        b = board.setMarkAt(Symbol.CIRCLE,4);
         assertTrue(b);
         MarkInterface[] marks = board.getMarks();
@@ -82,19 +85,51 @@ public class BoardTests {
     @Test
     public void TestgetWinner()
     {
-        for(int i =0;i<9;i++)
-        {
-        b = board.setMarkAt(Symbol.EMPTY, i);
-        assertTrue(b);
-        }      
+        board = mtboard(board);
         assertEquals(Symbol.EMPTY,board.getWinner());
         //Set board to winning state for CROSS
+    //rows
+        for(int j=0;j<3;j++){
+        board = mtboard(board);
         for(int i =0;i<3;i++)
         {
-        b = board.setMarkAt(Symbol.CROSS, i);
+        b = board.setMarkAt(Symbol.CROSS, (3*j)+i);
         assertTrue(b);
         }
         assertEquals(Symbol.CROSS,board.getWinner());
     }
-
+    //columns
+        for(int j=0;j<3;j++){
+            board = mtboard(board);
+            for(int i =0;i<3;i++)
+            {
+            b = board.setMarkAt(Symbol.CROSS, (3*i)+j);
+            assertTrue(b);
+            }
+            assertEquals(Symbol.CROSS,board.getWinner());
+    }
+    //diagonal1
+    board = mtboard(board);
+    for(int i= 0;i<9;i = i+4){
+        b = board.setMarkAt(Symbol.CROSS, i);
+        assertTrue(b);
+    }
+        assertEquals(Symbol.CROSS,board.getWinner());
+    //diagonal2    
+    board = mtboard(board);
+    for(int i= 2;i<7;i = i+2){
+        b = board.setMarkAt(Symbol.CROSS, i);
+        assertTrue(b);
+    }
+    assertEquals(Symbol.CROSS,board.getWinner());
+}
+    public BoardInterface mtboard (BoardInterface bird)
+    {
+        for(int i =0;i<9;i++)
+        {
+        b = bird.setMarkAt(Symbol.EMPTY, i);
+        assertTrue(b);
+        }      
+        return bird;
+    }
 }
