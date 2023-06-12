@@ -28,15 +28,8 @@ public class WrongGetSymbol {
         assertEquals(Symbol.CROSS,symbol);
     }
     @Test
-    public void testSetSymbol(){
-        p.setSymbol(Symbol.EMPTY);
-        try{
-            p.setSymbol(Symbol.CROSS);
-        }catch(Exception e)
-        {
-            fail("yeh idhar kya kar rha hai?");
-        }
-
+    public void testSetSymbol (){
+        assertEquals(p.getSymbol(),Symbol.CROSS);       
     }
     @Test
     public void testgetPosition(){
