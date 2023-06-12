@@ -16,23 +16,26 @@ public class BoardTests {
     @Before
     public void setUp() throws Exception {
         board = UTTTFactory.createBoard();
-    
-    }
+    }   
 
     @Test
     public void TestgetMarks()
 {
-    p= board.getMarks();
+    MarkInterface[] p;
+    p = board.getMarks();
     assertNotNull(p);
-    assertEquals(81,p.length);
+    assertEquals(9,p.length);
 }   
     @Test
     public void TestsetMarks()
     {
         p = new MarkInterface[9];
+        for(int i =0;i<9;i++)
+        p[i].setSymbol(Symbol.CROSS);
         board.setMarks(p);
         MarkInterface[] neueMarks = board.getMarks();
-        assertArrayEquals(p,neueMarks);
+        for(int i = 0;i<9;i++)
+        assertEquals(p[i],neueMarks[i]);
         }
     
 
@@ -79,8 +82,11 @@ public class BoardTests {
     @Test
     public void TestgetWinner()
     {
-        p = new MarkInterface[9];          
-        board.setMarks(p);
+        for(int i =0;i<9;i++)
+        {
+        b = board.setMarkAt(Symbol.EMPTY, i);
+        assertTrue(b);
+        }      
         assertEquals(Symbol.EMPTY,board.getWinner());
         //Set board to winning state for CROSS
         for(int i =0;i<3;i++)
