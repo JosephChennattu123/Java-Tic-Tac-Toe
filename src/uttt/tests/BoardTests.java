@@ -29,12 +29,12 @@ public class BoardTests {
     @Test
     public void TestsetMarks()
     {
-        p = new MarkInterface[9];
+        MarkInterface[] r = new MarkInterface[9];
         for(int i =0;i<9;i++)
         {
-        p[i].setSymbol(Symbol.CROSS);
+        r[i].setSymbol(Symbol.EMPTY);
         }
-        board.setMarks(p);
+        board.setMarks(r);
         MarkInterface[] neueMarks = board.getMarks();
         for(int i = 0;i<9;i++)
         assertEquals(p[i],neueMarks[i]);
