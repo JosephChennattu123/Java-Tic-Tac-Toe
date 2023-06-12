@@ -19,7 +19,7 @@ public class BoardTests {
     }   
 
     @Test
-    public void TestgetMarks()
+    public void TestgetMarks ()
 {
     MarkInterface[] p;
     p = board.getMarks();
@@ -40,7 +40,7 @@ public class BoardTests {
     
 
     @Test
-    public void TestsetMarkAt(){
+    public void TestsetMarkAt() throws Exception{
         assertFalse(board.isClosed());
        b = board.setMarkAt(Symbol.CIRCLE,4);
         assertTrue(b);
