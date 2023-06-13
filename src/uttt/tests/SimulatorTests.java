@@ -159,6 +159,7 @@ public SimulatorInterface simer (SimulatorInterface simulator)
     BoardInterface[] boards = simulator.getBoards();
     for(int i = 0;i<9;i++)
     {
+        boards[i] = UTTTFactory.createBoard();
         for(int j = 0;j<9;j++)
         {
             boards[i].setMarkAt(Symbol.EMPTY, j);
