@@ -37,7 +37,7 @@ public class BoardTests {
         board.setMarks(r);
         MarkInterface[] neueMarks = board.getMarks();
         for(int i = 0;i<9;i++)
-        assertEquals(p[i],neueMarks[i]);
+        assertEquals(r[i],neueMarks[i]);
         }
     
 
