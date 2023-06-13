@@ -7,7 +7,8 @@ import static org.junit.Assert.*;
 import uttt.utils.Symbol;
 import uttt.UTTTFactory;
 import uttt.tests.BoardTests;
-
+/* the entire template of this file was made using chatgpt. while some individual functions were made by myself they were again run thru chatgpt to get a better debugging. AGAIN THERE WAS NO WAY I COULD CHECK IF MY FILE WAS CORRECT WITHOUT USING CHATGPT.
+*/
 public class SimulatorTests {
 
      SimulatorInterface simulator;
@@ -204,7 +205,7 @@ public class SimulatorTests {
 
         assertEquals("Invalid mark index", exception.getMessage());
     }
-}
+
     @Test
     public void testGetWinner() {
         simulator = simer(simulator);

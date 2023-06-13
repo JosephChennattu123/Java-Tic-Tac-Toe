@@ -7,7 +7,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import uttt.UTTTFactory;
-
+/* the entire template of this file was made using chatgpt. while some individual functions were made by myself they were again run thru chatgpt to get a better debugging. AGAIN THERE WAS NO WAY I COULD CHECK IF MY FILE WAS CORRECT WITHOUT USING CHATGPT.
+*/
 public class BoardTests {
     MarkInterface[] p;
     boolean b;

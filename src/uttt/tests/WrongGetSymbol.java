@@ -8,7 +8,8 @@ import uttt.UTTTFactory;
 import uttt.game.MarkInterface;
 import uttt.game.BoardInterface;
 import uttt.utils.Symbol;
-
+/* the entire template of this file was made using chatgpt. while some individual functions were made by myself they were again run thru chatgpt to get a better debugging. AGAIN THERE WAS NO WAY I COULD CHECK IF MY FILE WAS CORRECT WITHOUT USING CHATGPT.
+*/
 public class WrongGetSymbol {
       MarkInterface p, p1,p2;
       BoardInterface b;
