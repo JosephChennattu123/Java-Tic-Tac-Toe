@@ -146,7 +146,7 @@ public class SimulatorTests {
         simulator = simer(simulator);
         int boardIndex = 0;
         simulator.setCurrentPlayerSymbol(Symbol.CROSS);        // Call the method and assert the return value
-        simulator.setMarkAt(Symbol.CROSS, 0, 0)
+        simulator.setMarkAt(Symbol.CROSS, 0, 0);
         int invalidBoardIndex = -1;
 
         // Use assertThrows to check for IllegalArgumentException
