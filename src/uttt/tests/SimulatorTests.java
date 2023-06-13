@@ -161,7 +161,7 @@ public SimulatorInterface simer (SimulatorInterface simulator)
     {
         for(int j = 0;j<9;j++)
         {
-            boards[i].setMarkAt(Symbol.EMPTY, 9);
+            boards[i].setMarkAt(Symbol.EMPTY, j);
         }
     }
     return simulator;
