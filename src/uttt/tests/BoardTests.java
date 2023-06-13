@@ -32,7 +32,7 @@ public class BoardTests {
         MarkInterface[] r = new MarkInterface[9];
         for(int i =0;i<9;i++)
         {
-        r[i].setSymbol(Symbol.EMPTY);
+        r[i] = UTTTFactory.createMark(Symbol.EMPTY, i);
         }
         board.setMarks(r);
         MarkInterface[] neueMarks = board.getMarks();
@@ -52,28 +52,8 @@ public class BoardTests {
         assertFalse(board.setMarkAt(Symbol.CROSS,4));
     }
     @Test
-    public void TestisClosed(){
-        
-        //test when board not closed
-        if(board.getWinner()==Symbol.EMPTY)
-        {
-        int ninja=0;
-        p = new MarkInterface[9];
-        p = board.getMarks();
-        for(int i = 0;i<9;i++){
-        if(p[i].getSymbol()==Symbol.CROSS || p[i].getSymbol()==Symbol.CIRCLE)
-        ninja++;
-        }
-        if(ninja<9)
-        assertFalse(board.isClosed());
-        else
-        assertTrue(board.isClosed());
-        }
-        if(board.getWinner()==Symbol.CROSS || board.getWinner()==Symbol.CIRCLE)
-        assertTrue(board.isClosed()); 
-    }
-    @Test
     public void TestisMovePossible(){
+        board = mtboard(board);
         assertFalse(board.isClosed());
         //set 0 to empty
         board.setMarkAt(Symbol.EMPTY, 0);
@@ -83,30 +63,34 @@ public class BoardTests {
         assertFalse(board.isMovePossible(0));
     }
     @Test
-    public void TestgetWinner()
+    public void WinnerAndClosed()
     {
         board = mtboard(board);
         assertEquals(Symbol.EMPTY,board.getWinner());
         //Set board to winning state for CROSS
     //rows
+    board = mtboard(board);
         for(int j=0;j<3;j++){
         board = mtboard(board);
-        for(int i =0;i<3;i++)
+            for(int i =0;i<3;i++)
         {
         b = board.setMarkAt(Symbol.CROSS, (3*j)+i);
         assertTrue(b);
         }
         assertEquals(Symbol.CROSS,board.getWinner());
+        assertTrue(board.isClosed());
     }
     //columns
-        for(int j=0;j<3;j++){
-            board = mtboard(board);
+    
+        for(int j=0;j<3;j++){      
+            board = mtboard(board);      
             for(int i =0;i<3;i++)
             {
             b = board.setMarkAt(Symbol.CROSS, (3*i)+j);
             assertTrue(b);
             }
             assertEquals(Symbol.CROSS,board.getWinner());
+            assertTrue(board.isClosed());
     }
     //diagonal1
     board = mtboard(board);
@@ -115,6 +99,7 @@ public class BoardTests {
         assertTrue(b);
     }
         assertEquals(Symbol.CROSS,board.getWinner());
+        assertTrue(board.isClosed());
     //diagonal2    
     board = mtboard(board);
     for(int i= 2;i<7;i = i+2){
@@ -122,6 +107,27 @@ public class BoardTests {
         assertTrue(b);
     }
     assertEquals(Symbol.CROSS,board.getWinner());
+    assertTrue(board.isClosed());
+    //tie setting the board to a tie state.
+    board = mtboard(board);
+    board.setMarkAt(Symbol.CROSS, 0);
+    board.setMarkAt(Symbol.CIRCLE, 1);
+    board.setMarkAt(Symbol.CROSS, 2);
+    board.setMarkAt(Symbol.CIRCLE, 3);
+    board.setMarkAt(Symbol.CROSS, 4);
+    board.setMarkAt(Symbol.CIRCLE, 5);
+    board.setMarkAt(Symbol.CIRCLE, 6);
+    board.setMarkAt(Symbol.CROSS,7);
+    board.setMarkAt(Symbol.CIRCLE,8);
+    assertEquals(Symbol.EMPTY,board.getWinner());
+    assertTrue(board.isClosed());
+    //set board to an incomplete board
+    board = mtboard(board);
+    board.setMarkAt(Symbol.CROSS, 0);
+    board.setMarkAt(Symbol.CIRCLE, 1);
+    board.setMarkAt(Symbol.CROSS, 2);
+    assertEquals(Symbol.EMPTY,board.getWinner());
+    assertFalse(board.isClosed());
 }
     public BoardInterface mtboard (BoardInterface bird)
     {

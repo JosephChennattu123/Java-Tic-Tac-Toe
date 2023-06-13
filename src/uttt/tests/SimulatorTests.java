@@ -25,7 +25,7 @@ public class SimulatorTests {
         assertEquals(9,boards.length);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetBoards() {
         simulator = simer(simulator);
         BoardInterface[] boards = simulator.getBoards();
@@ -45,7 +45,7 @@ public class SimulatorTests {
         assertEquals(symbol, Symbol.CROSS);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetCurrentPlayerSymbol() {
        simulator = simer(simulator);
        boolean b = simulator.setMarkAt(Symbol.CIRCLE, 0, 0);
@@ -58,6 +58,8 @@ public class SimulatorTests {
         simulator = simer(simulator);
         simulator.setCurrentPlayerSymbol(Symbol.CIRCLE);
         assertTrue(simulator.setMarkAt(simulator.getCurrentPlayerSymbol(), 0, 0)); 
+        simulator.setCurrentPlayerSymbol(Symbol.CROSS);
+        assertFalse(simulator.setMarkAt(simulator.getCurrentPlayerSymbol(), 0, 0)); 
     }
 
     @Test
@@ -99,10 +101,14 @@ public class SimulatorTests {
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetIndexNextBoard() {
+        simulator.setIndexNextBoard(99); 
+        assertEquals(0, simulator.getIndexNextBoard());
+    }
+    @Test
+    public void testSetIndexNextBoard1() {
         simulator.setIndexNextBoard(0); 
         assertEquals(0, simulator.getIndexNextBoard());
     }
-
     @Test
     public void testIsGameOver() {
         int p =0;
