@@ -56,6 +56,7 @@ public class SimulatorTests {
     @Test
     public void testSetMarkAt() { 
         simulator = simer(simulator);
+        simulator.setCurrentPlayerSymbol(Symbol.CIRCLE);
         assertTrue(simulator.setMarkAt(simulator.getCurrentPlayerSymbol(), 0, 0)); 
     }
 
