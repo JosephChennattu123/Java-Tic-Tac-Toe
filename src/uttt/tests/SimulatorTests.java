@@ -22,10 +22,12 @@ public class SimulatorTests {
     public void testGetBoards() {
         BoardInterface[] boards = simulator.getBoards();
         assertNotNull(boards);
+        assertEquals(9,boards.length);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetBoards() {
+        simulator = simer(simulator);
         BoardInterface[] boards = simulator.getBoards();
         simulator.setBoards(boards);
         BoardInterface[] check = simulator.getBoards();
@@ -36,25 +38,62 @@ public class SimulatorTests {
 
     @Test
     public void testGetCurrentPlayerSymbol() {
+        simulator = simer(simulator);
+        simulator.setCurrentPlayerSymbol(Symbol.CROSS);
         Symbol symbol = simulator.getCurrentPlayerSymbol();
         assertNotNull(symbol);
+        assertEquals(symbol, Symbol.CROSS);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetCurrentPlayerSymbol() {
-        simulator.setCurrentPlayerSymbol(Symbol.CROSS); // replace with the test symbol
-        assertEquals(Symbol.CROSS, simulator.getCurrentPlayerSymbol());
+       simulator = simer(simulator);
+       boolean b = simulator.setMarkAt(Symbol.CIRCLE, 0, 0);
+       assertTrue(b);
+       assertEquals(Symbol.CROSS, simulator.getCurrentPlayerSymbol());
     }
 
     @Test
-    public void testSetMarkAt() {
-        assertTrue(simulator.setMarkAt(Symbol.CROSS, 0, 0)); 
+    public void testSetMarkAt() { 
+        simulator = simer(simulator);
+        assertTrue(simulator.setMarkAt(simulator.getCurrentPlayerSymbol(), 0, 0)); 
     }
 
     @Test
     public void testGetIndexNextBoard() {
-        int index = simulator.getIndexNextBoard();
-        assertTrue(index >= -1);
+        //basic true case
+        simulator = simer(simulator);
+        simulator.setCurrentPlayerSymbol(Symbol.CIRCLE);
+        boolean b = simulator.setMarkAt(Symbol.CIRCLE, 0, 0);
+        assertTrue(b);
+        int bindex = simulator.getIndexNextBoard();
+        assertTrue(bindex<9);
+        assertTrue(bindex>-1);
+        assertEquals(bindex, 0);
+        //check if returning -1 to a closed board
+        simulator = simer(simulator);
+        simulator.setCurrentPlayerSymbol(Symbol.CIRCLE);
+        simulator.setIndexNextBoard(0);
+        simulator.setMarkAt(Symbol.CIRCLE, 0, 3);
+        simulator.setCurrentPlayerSymbol(Symbol.CIRCLE);
+        simulator.setIndexNextBoard(0);
+        simulator.setMarkAt(Symbol.CIRCLE, 0, 2);
+        simulator.setCurrentPlayerSymbol(Symbol.CIRCLE);
+        simulator.setIndexNextBoard(0);
+        simulator.setMarkAt(Symbol.CIRCLE, 0, 1);
+        assertEquals(simulator.getIndexNextBoard(), -1);
+        //all boards closed
+        simulator = simer(simulator);
+        for(int i = 0;i<9;i++)
+        {
+            for(int j = 0;j<3;j++){
+            simulator.setCurrentPlayerSymbol(Symbol.CIRCLE);
+            simulator.setIndexNextBoard(i);
+            simulator.setMarkAt(Symbol.CIRCLE, i, j);
+            }
+        }
+        int lawda = simulator.getIndexNextBoard();
+        assertFalse(simulator.isMovePossible(lawda));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -65,6 +104,13 @@ public class SimulatorTests {
 
     @Test
     public void testIsGameOver() {
+        int p =0;
+        BoardInterface[] boards = simulator.getBoards();
+
+        for(int i = 0;i<9;i++){
+        if(boards[i].isClosed()==false)
+        p = 1;
+        }
         assertFalse(simulator.isGameOver());
         // Additional tests when game state changes
     }
@@ -101,6 +147,17 @@ public class SimulatorTests {
         }
         assertEquals(Symbol.CROSS,simulator.getWinner());
         }
-
+public SimulatorInterface simer (SimulatorInterface simulator)
+{
+    BoardInterface[] boards = simulator.getBoards();
+    for(int i = 0;i<9;i++)
+    {
+        for(int j = 0;j<9;j++)
+        {
+            boards[i].setMarkAt(Symbol.EMPTY, 9);
+        }
+    }
+    return simulator;
+}
     
 }
