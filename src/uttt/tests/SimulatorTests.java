@@ -102,7 +102,7 @@ public class SimulatorTests {
     @Test(expected = IllegalArgumentException.class)
     public void testSetIndexNextBoard() {
         simulator.setIndexNextBoard(99); 
-        assertEquals(0, simulator.getIndexNextBoard());
+        assertEquals(99, simulator.getIndexNextBoard());
     }
     @Test
     public void testSetIndexNextBoard1() {
