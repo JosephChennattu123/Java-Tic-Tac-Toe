@@ -31,7 +31,7 @@ public class WrongGetSymbol {
     public void testSetSymbol (){
         MarkInterface l = UTTTFactory.createMark(Symbol.EMPTY, 0);
         l.setSymbol(Symbol.CROSS);
-        assertEquals(l.getSymbol(),Symbol.CROSS);       
+        assertEquals(Symbol.CROSS,l.getSymbol());       
     }
     @Test
     public void testgetPosition(){
