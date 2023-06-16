@@ -64,7 +64,7 @@ public class SimulatorTests {
             simulator.setCurrentPlayerSymbol(invalidSymbol);
         });
 
-        assertEquals("Invalid symbol", exception.getMessage());
+        assertEquals("Symbol is null.", exception.getMessage());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class SimulatorTests {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             simulator.setMarkAt(q, 0,0);
         });
-        assertEquals("Invalid symbol", exception.getMessage());
+        assertEquals("Symbol is null.", exception.getMessage());
     }
 
     @Test
@@ -110,14 +110,15 @@ public class SimulatorTests {
         assertEquals(simulator.getIndexNextBoard(), -1);
         //all boards closed
         simulator = simer(simulator);
+        BoardInterface[] boardss = simulator.getBoards();
         for(int i = 0;i<9;i++)
         {
-            for(int j = 0;j<3;j++){
-            simulator.setCurrentPlayerSymbol(Symbol.CIRCLE);
-            simulator.setIndexNextBoard(i);
-            simulator.setMarkAt(Symbol.CIRCLE, i, j);
+            BoardInterface bi = boardss[i];
+            bi = mtboard(bi);
+            boardss[i] = tiemaker(bi);
+
             }
-        }
+        simulator.setBoards(boardss);        
         int lawda = simulator.getIndexNextBoard();
         assertNull(lawda);
         }
@@ -155,7 +156,7 @@ public class SimulatorTests {
             simulator.isMovePossible(invalidBoardIndex);
         });
 
-        assertEquals("Invalid board index", exception.getMessage());
+        assertEquals("Board Index x out of range.", exception.getMessage());
     }
 
     @Test
@@ -186,7 +187,7 @@ public class SimulatorTests {
             simulator.isMovePossible(invalidBoardIndex, markIndex);
         });
 
-        assertEquals("Invalid board index", exception.getMessage());
+        assertEquals("Board Index out of range.", exception.getMessage());
     }
 
     @Test
@@ -203,7 +204,7 @@ public class SimulatorTests {
             simulator.isMovePossible(boardIndex, invalidMarkIndex);
         });
 
-        assertEquals("Invalid mark index", exception.getMessage());
+        assertEquals("Mark index out of range.", exception.getMessage());
     }
 
     @Test
