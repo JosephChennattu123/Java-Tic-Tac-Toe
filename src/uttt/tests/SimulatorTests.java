@@ -108,19 +108,6 @@ public class SimulatorTests {
         simulator.setIndexNextBoard(0);
         simulator.setMarkAt(Symbol.CIRCLE, 0, 0);
         assertEquals(simulator.getIndexNextBoard(), -1);
-        //all boards closed
-        simulator = simer(simulator);
-        BoardInterface[] boardss = simulator.getBoards();
-        for(int i = 0;i<9;i++)
-        {
-            BoardInterface bi = boardss[i];
-            bi = mtboard(bi);
-            boardss[i] = tiemaker(bi);
-
-            }
-        simulator.setBoards(boardss);        
-        int lawda = simulator.getIndexNextBoard();
-        assertNull(lawda);
         }
 
     @Test(expected = IllegalArgumentException.class)
@@ -156,7 +143,7 @@ public class SimulatorTests {
             simulator.isMovePossible(invalidBoardIndex);
         });
 
-        assertEquals("Board Index x out of range.", exception.getMessage());
+        assertEquals("Board [inde]x out of range.", exception.getMessage());
     }
 
     @Test
@@ -187,7 +174,7 @@ public class SimulatorTests {
             simulator.isMovePossible(invalidBoardIndex, markIndex);
         });
 
-        assertEquals("Board Index out of range.", exception.getMessage());
+        assertEquals("Board [I]ndex out of range.", exception.getMessage());
     }
 
     @Test

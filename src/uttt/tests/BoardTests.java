@@ -67,6 +67,7 @@ public class BoardTests {
     public void WinnerAndClosed()
     {
         board = mtboard(board);
+        board.setMarkAt(Symbol.CROSS, 0);
         assertEquals(Symbol.EMPTY,board.getWinner());
         //Set board to winning state for CROSS
     //rows
