@@ -5,6 +5,7 @@ import uttt.game.BoardInterface;
 import uttt.game.MarkInterface;
 import uttt.game.MarkInterfaceImplementation;
 import uttt.game.PlayerInterface;
+import uttt.game.Simplement;
 import uttt.game.SimulatorInterface;
 import uttt.game.UserInterface;
 import uttt.ui.GUI;
@@ -41,7 +42,13 @@ public class UTTTFactory {
 	 * @return A Ultimate TicTacToe simulator.
 	 */
 	public static SimulatorInterface createSimulator() {
-		throw new UnsupportedOperationException("Not yet implemented");
+		BoardInterface[] boards = new BoardInterface[9];  // Assuming 9 boards in the Ultimate TicTacToe game
+		for (int i = 0; i < 9; i++) {
+			boards[i] = createBoard();
+		}
+		Symbol currentPlayerSymbol = Symbol.CROSS;  // Assuming 'X' starts the game
+		int indexNextBoard = -1;  // Assuming no restriction for the next move initially
+		return new Simplement(boards, currentPlayerSymbol, indexNextBoard);
 	}
 
 	/**
