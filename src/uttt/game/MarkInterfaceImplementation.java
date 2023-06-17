@@ -14,7 +14,10 @@ public class MarkInterfaceImplementation implements MarkInterface {
      * @param position The position of the mark on its board.
      */
     public MarkInterfaceImplementation(Symbol symbol, int position) {
-        this.symbol = symbol;
+        if (position < 0 || position > 8) {
+            throw new IllegalArgumentException("Position must be between 0 and 8");
+        }
+        this.symbol = Symbol.EMPTY;
         this.position = position;
     }
 
