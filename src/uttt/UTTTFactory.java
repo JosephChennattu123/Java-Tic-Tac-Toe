@@ -20,7 +20,7 @@ public class UTTTFactory {
 	 * @return A Ultimate TicTacToe mark.
 	 */
 	public static MarkInterface createMark(Symbol symbol, int j) {
-	MarkInterfaceImplementation marks = new MarkInterfaceImplementation(symbol,j);
+		MarkInterfaceImplementation marks = new MarkInterfaceImplementation(symbol, j);
 		marks.setSymbol(symbol);
 		return marks;
 	}
