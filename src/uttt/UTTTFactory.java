@@ -1,5 +1,6 @@
 package uttt;
 
+import uttt.game.BoardImplement;
 import uttt.game.BoardInterface;
 import uttt.game.MarkInterface;
 import uttt.game.MarkInterfaceImplementation;
@@ -20,7 +21,7 @@ public class UTTTFactory {
 	 * @return A Ultimate TicTacToe mark.
 	 */
 	public static MarkInterface createMark(Symbol symbol, int j) {
-		MarkInterfaceImplementation marks = new MarkInterfaceImplementation(symbol, j);
+		MarkInterfaceImplementation marks = new MarkInterfaceImplementation(j);
 		marks.setSymbol(symbol);
 		return marks;
 	}
@@ -31,7 +32,7 @@ public class UTTTFactory {
 	 * @return A Ultimate TicTacToe board.
 	 */
 	public static BoardInterface createBoard() {
-		throw new UnsupportedOperationException("Not yet implemented");
+		return new BoardImplement();
 	}
 
 	/**

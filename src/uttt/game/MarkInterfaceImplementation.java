@@ -13,7 +13,7 @@ public class MarkInterfaceImplementation implements MarkInterface {
      * @param symbol   The symbol to assign to the mark.
      * @param position The position of the mark on its board.
      */
-    public MarkInterfaceImplementation(Symbol symbol, int position) {
+    public MarkInterfaceImplementation(int position) {
         if (position < 0 || position > 8) {
             throw new IllegalArgumentException("Position must be between 0 and 8");
         }
