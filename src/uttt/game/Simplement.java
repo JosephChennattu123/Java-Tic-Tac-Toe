@@ -2,6 +2,8 @@ package uttt.game;
 
 import uttt.utils.Move;
 import uttt.utils.Symbol;
+//created by putting the entire header file into chatgpt4 premium with the prompt:
+//make a logical implementation. The made some minor/logical corrections to its code
 
 public class Simplement implements SimulatorInterface {
 
